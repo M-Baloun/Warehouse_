@@ -9,6 +9,7 @@ struct Produkt {
 
 int main() {
     struct Produkt sklad[100];
+    int aktualniPocet = 0;
     char volba;
 
     for (int i = 0; i < 100; i++) {
@@ -18,9 +19,10 @@ int main() {
     strcpy(sklad[0].nazev, "Rohlik");
     sklad[0].cena = 3;
     sklad[0].skladem = 50;
+    aktualniPocet = 1;
 
     while (1) {
-        printf("\n--- SKLAD (Max 100) ---\n");
+        printf("\n--- SKLAD (%d/100) ---\n", aktualniPocet);
         printf("1. Vsechny produkty\n");
         printf("2. Vyhledat podle nazvu\n");
         printf("3. Upravit / Pridat produkt\n");
@@ -53,6 +55,7 @@ int main() {
             printf("Zadejte ID (0-99): ");
             scanf("%d", &id);
             if (id >= 0 && id < 100) {
+                if (sklad[id].cena == 0) aktualniPocet++;
                 printf("Nazev: ");
                 scanf("%s", sklad[id].nazev);
 
